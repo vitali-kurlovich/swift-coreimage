@@ -4,12 +4,12 @@
 
 import Foundation
 
-struct AngleValueDescription: ValueDescription {
-    typealias Value = Float
+public struct AngleValueDescription: ValueDescription {
+    public typealias Value = Float
 
-    let attribute: FilterAttribute
+    public let attribute: FilterAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterAttribute) {
         assert(attribute.type == .angle)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

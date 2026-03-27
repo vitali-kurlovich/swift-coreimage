@@ -4,12 +4,12 @@
 
 import Foundation
 
-struct CountValueDescription: ValueDescription {
-    typealias Value = UInt
+public struct CountValueDescription: ValueDescription {
+    public typealias Value = UInt
 
-    let attribute: FilterAttribute
+    public let attribute: FilterAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterAttribute) {
         assert(attribute.type == .count)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

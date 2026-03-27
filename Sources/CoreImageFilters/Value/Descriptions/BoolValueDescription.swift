@@ -4,12 +4,12 @@
 
 import Foundation
 
-struct BoolValueDescription: ValueDescription {
-    typealias Value = Bool
+public struct BoolValueDescription: ValueDescription {
+    public typealias Value = Bool
 
-    let attribute: FilterAttribute
+    public let attribute: FilterAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterAttribute) {
         assert(attribute.type == .boolean)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

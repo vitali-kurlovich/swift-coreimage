@@ -4,12 +4,12 @@
 
 import Foundation
 
-struct DistanceValueDescription: ValueDescription {
-    typealias Value = Float
+public struct DistanceValueDescription: ValueDescription {
+    public typealias Value = Float
 
-    let attribute: FilterAttribute
+    public let attribute: FilterAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterAttribute) {
         assert(attribute.type == .distance)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

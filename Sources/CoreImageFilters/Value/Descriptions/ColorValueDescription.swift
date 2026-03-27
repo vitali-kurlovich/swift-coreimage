@@ -4,18 +4,18 @@
 
 import CoreImage
 
-struct ColorValueDescription: ValueDescription {
-    typealias Value = CIColor
+public struct ColorValueDescription: ValueDescription {
+    public typealias Value = CIColor
 
-    let attribute: FilterAttribute
+    public let attribute: FilterAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterAttribute) {
         assert(attribute.type == .color || attribute.type == .opaqueColor)
         assert(attribute.className == CIColor.className())
         self.attribute = attribute
     }
 
-    var isOpaque: Bool {
+    public var isOpaque: Bool {
         type == .opaqueColor
     }
 }
