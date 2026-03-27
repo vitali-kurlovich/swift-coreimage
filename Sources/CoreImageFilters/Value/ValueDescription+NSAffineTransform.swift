@@ -7,6 +7,18 @@
     import CoreImage
 
     extension ValueDescription where Value == NSAffineTransform {
+        var value: Value? {
+            get {
+                assert(attribute.className == NSAffineTransform.className())
+                return attribute.value as? Value
+            }
+
+            set {
+                assert(attribute.className == NSAffineTransform.className())
+                attribute.value = value
+            }
+        }
+
         var `default`: Value {
             guard let value = attribute[kCIAttributeDefault] else { return NSAffineTransform(transform: .identity) }
 
