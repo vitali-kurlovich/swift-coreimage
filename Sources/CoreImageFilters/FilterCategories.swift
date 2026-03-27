@@ -4,17 +4,15 @@
 
 import CoreImage
 
-public
-struct FilterCategories: OptionSet, Hashable, Sendable {
+public struct FilterCategories: OptionSet, Hashable, Sendable {
     public var rawValue: UInt64
-    
+
     public init(rawValue: UInt64) {
         self.rawValue = rawValue
     }
 }
 
-public
-extension FilterCategories {
+public extension FilterCategories {
     init(_ name: String) {
         let categoryMap = Self.categoryMap
 
@@ -44,8 +42,7 @@ extension FilterCategories {
     }
 }
 
-public
-extension FilterCategories {
+public extension FilterCategories {
     var keys: [String] {
         let categoryMap = Self.categoryMap
 
@@ -61,11 +58,10 @@ extension FilterCategories {
     }
 }
 
-public
-extension FilterCategories {
+public extension FilterCategories {
     /// A filter that reshapes an image by altering its geometry to create a 3D effect. Using distortion filters, you can displace portions of an image, apply lens effects, make a bulge in an image, and perform other operation to achieve an artistic effect.
     static var distortionEffect: Self { .init(rawValue: 1 << 0) }
-    
+
     /// A filter that changes the geometry of an image. Some of these filters are used to warp an image to achieve an artistic effects, but these filters can also be used to correct problems in the source image. For example, you can apply an affine transform to straighten an image that is rotated with respect to the horizon.
     static var geometryAdjustment: Self { .init(rawValue: 1 << 1) }
     /// A filter operates on two image sources, using the color values of one image to operate on the other. Composite filters perform computations such as computing maximum values, minimum values, and multiplying values between input images. You can use compositing filters to add effects to an image, crop an image, and achieve a variety of other effects.
