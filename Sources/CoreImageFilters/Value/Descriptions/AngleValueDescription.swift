@@ -7,9 +7,9 @@ import Foundation
 public struct AngleValueDescription: ValueDescription {
     public typealias Value = Float
 
-    public let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    public init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .angle)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

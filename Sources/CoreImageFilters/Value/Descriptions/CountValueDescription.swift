@@ -7,9 +7,9 @@ import Foundation
 public struct CountValueDescription: ValueDescription {
     public typealias Value = UInt
 
-    public let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    public init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .count)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

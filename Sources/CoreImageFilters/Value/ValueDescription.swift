@@ -7,7 +7,7 @@ import CoreImage
 public protocol ValueDescription {
     associatedtype Value
 
-    var attribute: FilterAttribute { get }
+    var attribute: FilterInputAttribute { get }
 
     var `default`: Value { get }
 

@@ -1,16 +1,16 @@
 //
-//  Created by Vitali Kurlovich on 27.03.2026.
+//  Created by Vitali Kurlovich on 29.03.2026.
 //
 
 import Foundation
 
-public struct BoolValueDescription: ValueDescription {
-    public typealias Value = Bool
+public struct PhaseValueDescription: ValueDescription {
+    public typealias Value = Float
 
     public let attribute: FilterInputAttribute
 
     public init(attribute: FilterInputAttribute) {
-        assert(attribute.type == .boolean)
+        assert(attribute.type == .phase)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute
     }

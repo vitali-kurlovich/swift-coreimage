@@ -4,12 +4,12 @@
 
 import Foundation
 
-struct IntValueDescription: ValueDescription {
-    typealias Value = Int
+public struct IntValueDescription: ValueDescription {
+    public typealias Value = Int
 
-    let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .integer)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

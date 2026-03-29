@@ -7,9 +7,9 @@ import CoreImage
 public struct ColorValueDescription: ValueDescription {
     public typealias Value = CIColor
 
-    public let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    public init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .color || attribute.type == .opaqueColor)
         assert(attribute.className == CIColor.className())
         self.attribute = attribute

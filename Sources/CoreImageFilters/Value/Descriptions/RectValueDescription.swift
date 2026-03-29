@@ -4,12 +4,12 @@
 
 import CoreImage
 
-struct RectValueDescription: ValueDescription {
-    typealias Value = CGRect
+public struct RectValueDescription: ValueDescription {
+    public typealias Value = CGRect
 
-    let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .rectangle)
         assert(attribute.className == CIVector.className() || attribute.className == NSValue.className())
         self.attribute = attribute

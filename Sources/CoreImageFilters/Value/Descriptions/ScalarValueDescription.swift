@@ -4,12 +4,12 @@
 
 import Foundation
 
-struct ScalarValueDescription: ValueDescription {
-    typealias Value = Float
+public struct ScalarValueDescription: ValueDescription {
+    public typealias Value = Float
 
-    let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .scalar)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

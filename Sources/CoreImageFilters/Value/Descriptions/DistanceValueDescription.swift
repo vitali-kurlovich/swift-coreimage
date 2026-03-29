@@ -7,9 +7,9 @@ import Foundation
 public struct DistanceValueDescription: ValueDescription {
     public typealias Value = Float
 
-    public let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    public init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .distance)
         assert(attribute.className == NSNumber.className())
         self.attribute = attribute

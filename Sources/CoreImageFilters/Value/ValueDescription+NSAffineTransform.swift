@@ -6,7 +6,7 @@
 
     import CoreImage
 
-    extension ValueDescription where Value == NSAffineTransform {
+    public extension ValueDescription where Value == NSAffineTransform {
         var value: Value? {
             get {
                 assert(attribute.className == NSAffineTransform.className())

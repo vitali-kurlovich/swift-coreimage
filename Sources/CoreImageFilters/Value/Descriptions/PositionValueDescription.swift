@@ -4,12 +4,12 @@
 
 import CoreImage
 
-struct PositionValueDescription: ValueDescription {
-    typealias Value = CGPoint
+public struct PositionValueDescription: ValueDescription {
+    public typealias Value = CGPoint
 
-    let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .position)
         assert(attribute.className == CIVector.className())
         self.attribute = attribute

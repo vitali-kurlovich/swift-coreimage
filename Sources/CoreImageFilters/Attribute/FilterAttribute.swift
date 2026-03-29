@@ -4,7 +4,7 @@
 
 import CoreImage
 
-public final class FilterAttribute {
+public class FilterAttribute {
     public let filter: CIFilter
     public let key: String
 
@@ -16,7 +16,7 @@ public final class FilterAttribute {
 
 extension FilterAttribute: Equatable {
     public static func == (lhs: FilterAttribute, rhs: FilterAttribute) -> Bool {
-        lhs === rhs || lhs.key == rhs.key && lhs.filter === rhs.filter
+        lhs === rhs || lhs.key == rhs.key && lhs.filter == rhs.filter
     }
 }
 
@@ -56,38 +56,5 @@ extension FilterAttribute {
 }
 
 extension FilterAttribute {
-    var value: Any? {
-        get {
-            filter.value(forKey: key)
-        }
-
-        set {
-            filter.setValue(newValue, forKey: key)
-        }
-    }
-}
-
-extension FilterAttribute {
     private var attributes: [String: Any] { filter.attributes[key] as? [String: Any] ?? [:] }
-}
-
-private extension CIFilter {
-    func attribute(for key: String) -> FilterAttribute {
-        assert(attributes.keys.contains(key))
-        return FilterAttribute(filter: self, key: key)
-    }
-}
-
-extension CIFilter {
-    var inputAttributes: [FilterAttribute] {
-        inputKeys.compactMap {
-            attribute(for: $0)
-        }
-    }
-
-    var outputAttributes: [FilterAttribute] {
-        outputKeys.compactMap {
-            attribute(for: $0)
-        }
-    }
 }

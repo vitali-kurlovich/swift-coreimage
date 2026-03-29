@@ -4,12 +4,12 @@
 
 import CoreImage
 
-struct ImageValueDescription: ValueDescription {
-    typealias Value = CIImage
+public struct ImageValueDescription: ValueDescription {
+    public typealias Value = CIImage
 
-    let attribute: FilterAttribute
+    public let attribute: FilterInputAttribute
 
-    init(attribute: FilterAttribute) {
+    public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .image)
         assert(attribute.className == CIImage.className())
         self.attribute = attribute

@@ -2,13 +2,32 @@
 //  Created by Vitali Kurlovich on 26.03.2026.
 //
 
+import Combine
 import CoreImage
 
 public final class FilterDescription {
-    let filter: CIFilter
+    public let filter: CIFilter
+
+    public let inputAttributes: [FilterInputAttribute]
+
+    private var cancelable = Set<AnyCancellable>()
+
+    public let objectWillChange = ObservableObjectPublisher()
 
     public init(_ filter: CIFilter) {
         self.filter = filter
+
+        inputAttributes = filter.inputKeys.compactMap { FilterInputAttribute(filter: filter, key: $0) }
+
+        subscribeInputChanges()
+    }
+
+    private func subscribeInputChanges() {
+        for input in inputAttributes {
+            input.objectWillChange.sink { [objectWillChange] _ in
+                objectWillChange.send()
+            }.store(in: &cancelable)
+        }
     }
 
     #if os(macOS)
@@ -22,14 +41,6 @@ public final class FilterDescription {
         }
 
     #endif
-
-    public private(set) lazy var inputAttributes: [FilterAttribute] = filter.inputKeys.compactMap {
-        FilterAttribute(filter: filter, key: $0)
-    }
-
-    public private(set) lazy var outputAttributes: [FilterAttribute] = filter.outputKeys.compactMap {
-        FilterAttribute(filter: filter, key: $0)
-    }
 }
 
 public extension FilterDescription {
@@ -91,3 +102,5 @@ extension FilterDescription: Equatable {
         lhs === rhs || lhs.filter == rhs.filter
     }
 }
+
+extension FilterDescription: ObservableObject {}
