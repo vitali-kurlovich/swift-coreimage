@@ -20,6 +20,7 @@ public enum AttributeValueDescription {
     case scalar(ScalarValueDescription)
     case transform(TransformValueDescription)
     case string(StringValueDescription)
+    case data(DataValueDescription)
     case mlModel(MLModelValueDescription)
 }
 
@@ -56,10 +57,10 @@ public extension AttributeValueDescription {
             switch attribute.className {
             case NSString.className():
                 self = .string(StringValueDescription(attribute: attribute))
-
+            case NSData.className():
+                self = .data(DataValueDescription(attribute: attribute))
             case MLModel.className():
                 self = .mlModel(MLModelValueDescription(attribute: attribute))
-
             default:
                 fatalError("Unsuported type:\(attribute.className)")
             }
