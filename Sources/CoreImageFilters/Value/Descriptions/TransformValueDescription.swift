@@ -5,20 +5,14 @@
 import CoreImage
 
 public struct TransformValueDescription: ValueDescription {
-    #if os(macOS)
-        public typealias Value = NSAffineTransform
-    #endif
-
-    #if os(iOS)
-        public typealias Value = CGAffineTransform
-    #endif
+    public typealias Value = Transform
 
     public let attribute: FilterInputAttribute
 
     public init(attribute: FilterInputAttribute) {
         assert(attribute.type == .transform)
         #if os(macOS)
-            assert(attribute.className == NSAffineTransform.className())
+            assert(attribute.className == NSAffineTransform.className() || attribute.className == CIVector.className())
         #endif
 
         #if os(iOS)
