@@ -6,7 +6,7 @@
 
     import CoreImage
 
-    extension ValueDescription where Value == CGAffineTransform {
+    public extension ValueDescription where Value == CGAffineTransform {
         var value: Value? {
             get {
                 assert(attribute.className == CIVector.className())
