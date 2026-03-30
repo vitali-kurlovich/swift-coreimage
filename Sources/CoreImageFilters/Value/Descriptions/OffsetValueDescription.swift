@@ -1,17 +1,16 @@
 //
-//  Created by Vitali Kurlovich on 27.03.2026.
+//  Created by Vitali Kurlovich on 30.03.2026.
 //
 
 import CoreImage
 
-public struct PositionValueDescription: ValueDescription {
+public struct OffsetValueDescription: ValueDescription {
     public typealias Value = CGPoint
 
     public let attribute: FilterInputAttribute
 
     public init(attribute: FilterInputAttribute) {
-        assert(attribute.type == .position)
-
+        assert(attribute.type == .offset)
         #if os(macOS)
             assert(attribute.className == CIVector.className() || attribute.className == NSValue.className())
         #endif
@@ -19,7 +18,6 @@ public struct PositionValueDescription: ValueDescription {
         #if os(iOS)
             assert(attribute.className == CIVector.className())
         #endif
-
         self.attribute = attribute
     }
 }

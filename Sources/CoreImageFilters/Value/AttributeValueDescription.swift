@@ -2,6 +2,8 @@
 //  Created by Vitali Kurlovich on 29.03.2026.
 //
 
+import Foundation
+
 public enum AttributeValueDescription {
     case angle(AngleValueDescription)
     case bool(BoolValueDescription)
@@ -11,10 +13,12 @@ public enum AttributeValueDescription {
     case image(ImageValueDescription)
     case int(IntValueDescription)
     case position(PositionValueDescription)
+    case offset(OffsetValueDescription)
     case phase(PhaseValueDescription)
     case rect(RectValueDescription)
     case scalar(ScalarValueDescription)
     case transform(TransformValueDescription)
+    case string(StringValueDescription)
 }
 
 public extension AttributeValueDescription {
@@ -36,6 +40,8 @@ public extension AttributeValueDescription {
             self = .count(CountValueDescription(attribute: attribute))
         case .position:
             self = .position(PositionValueDescription(attribute: attribute))
+        case .offset:
+            self = .offset(OffsetValueDescription(attribute: attribute))
         case .rectangle:
             self = .rect(RectValueDescription(attribute: attribute))
         case .opaqueColor, .color:
@@ -44,15 +50,21 @@ public extension AttributeValueDescription {
             self = .image(ImageValueDescription(attribute: attribute))
         case .transform:
             self = .transform(TransformValueDescription(attribute: attribute))
-        case .uncknown:
-            fatalError()
         case .custom:
-            fatalError()
-        case .offset:
-            fatalError()
+            switch attribute.className {
+            case NSString.className():
+                self = .string(StringValueDescription(attribute: attribute))
+
+           // case MLModel.className():
+
+            default:
+                fatalError("Unsuported type:\(attribute.className)")
+            }
         case .position3D:
             fatalError()
         case .gradient:
+            fatalError()
+        case .uncknown:
             fatalError()
         }
     }
@@ -77,6 +89,8 @@ public extension AttributeValueDescription {
             return desc.attribute
         case let .position(desc):
             return desc.attribute
+        case let .offset(desc):
+            return desc.attribute
         case let .rect(desc):
             return desc.attribute
         case let .scalar(desc):
@@ -84,6 +98,8 @@ public extension AttributeValueDescription {
         case let .transform(desc):
             return desc.attribute
         case let .phase(desc):
+            return desc.attribute
+        case let .string(desc):
             return desc.attribute
         }
     }

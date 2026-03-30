@@ -9,9 +9,15 @@ public protocol ValueDescription {
 
     var attribute: FilterInputAttribute { get }
 
-    var `default`: Value { get }
+    var `default`: Value? { get }
 
     var value: Value? { get set }
+}
+
+public extension ValueDescription {
+    var `default`: Value? {
+        attribute[kCIAttributeDefault] as? Value
+    }
 }
 
 public extension ValueDescription {
@@ -56,8 +62,8 @@ public extension ValueDescription where Value == Float {
         }
     }
 
-    var `default`: Value {
-        (attribute[kCIAttributeDefault] as? NSNumber)?.floatValue ?? 0
+    var `default`: Value? {
+        (attribute[kCIAttributeDefault] as? NSNumber)?.floatValue
     }
 
     var identity: Value? {
@@ -108,8 +114,8 @@ public extension ValueDescription where Value == Int {
         }
     }
 
-    var `default`: Value {
-        (attribute[kCIAttributeDefault] as? NSNumber)?.intValue ?? 0
+    var `default`: Value? {
+        (attribute[kCIAttributeDefault] as? NSNumber)?.intValue
     }
 
     var identity: Value? {
@@ -160,8 +166,8 @@ public extension ValueDescription where Value == UInt {
         }
     }
 
-    var `default`: Value {
-        (attribute[kCIAttributeDefault] as? NSNumber)?.uintValue ?? 0
+    var `default`: Value? {
+        (attribute[kCIAttributeDefault] as? NSNumber)?.uintValue
     }
 
     var identity: Value? {
@@ -212,8 +218,8 @@ public extension ValueDescription where Value == Bool {
         }
     }
 
-    var `default`: Value {
-        (attribute[kCIAttributeDefault] as? NSNumber)?.boolValue ?? false
+    var `default`: Value? {
+        (attribute[kCIAttributeDefault] as? NSNumber)?.boolValue
     }
 
     var identity: Value? {
