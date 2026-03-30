@@ -15,6 +15,23 @@ public protocol ValueDescription {
 }
 
 public extension ValueDescription {
+    var supportDefaultValue: Bool {
+        attribute[kCIAttributeDefault] != nil
+    }
+
+    var supportIdentityValue: Bool {
+        attribute[kCIAttributeIdentity] != nil
+    }
+}
+
+public extension ValueDescription {
+    func setDefault() {
+        attribute.objectWillChange.send()
+        attribute.filter.setValue(attribute[kCIAttributeDefault], forKey: key)
+    }
+}
+
+public extension ValueDescription {
     var `default`: Value? {
         attribute[kCIAttributeDefault] as? Value
     }
@@ -35,12 +52,6 @@ public extension ValueDescription {
 
     var localizedDescription: String {
         attribute.localizedDescription
-    }
-}
-
-public extension ValueDescription {
-    func setDefault() {
-        attribute.filter.setValue(attribute[kCIAttributeDefault], forKey: key)
     }
 }
 

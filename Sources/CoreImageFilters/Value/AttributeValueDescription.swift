@@ -9,6 +9,9 @@ public enum AttributeValueDescription {
     case angle(AngleValueDescription)
     case bool(BoolValueDescription)
     case color(ColorValueDescription)
+
+    case colorSpace(ColorSpaceValueDescription)
+
     case count(CountValueDescription)
     case distance(DistanceValueDescription)
     case image(ImageValueDescription)
@@ -55,12 +58,18 @@ public extension AttributeValueDescription {
             self = .transform(TransformValueDescription(attribute: attribute))
         case .custom:
             switch attribute.className {
-            case NSString.className():
-                self = .string(StringValueDescription(attribute: attribute))
+            case NSObject.className() where attribute.key == "inputColorSpace":
+                self = .colorSpace(ColorSpaceValueDescription(attribute: attribute))
+
             case NSData.className():
                 self = .data(DataValueDescription(attribute: attribute))
+
+            case NSString.className():
+                self = .string(StringValueDescription(attribute: attribute))
+
             case MLModel.className():
                 self = .mlModel(MLModelValueDescription(attribute: attribute))
+
             default:
                 fatalError("Unsuported type:\(attribute.className)")
             }
@@ -105,7 +114,11 @@ public extension AttributeValueDescription {
             return desc.attribute
         case let .string(desc):
             return desc.attribute
+        case let .data(desc):
+            return desc.attribute
         case let .mlModel(desc):
+            return desc.attribute
+        case let .colorSpace(desc):
             return desc.attribute
         }
     }
