@@ -2,6 +2,7 @@
 //  Created by Vitali Kurlovich on 29.03.2026.
 //
 
+import class CoreML.MLModel
 import Foundation
 
 public enum AttributeValueDescription {
@@ -19,6 +20,7 @@ public enum AttributeValueDescription {
     case scalar(ScalarValueDescription)
     case transform(TransformValueDescription)
     case string(StringValueDescription)
+    case mlModel(MLModelValueDescription)
 }
 
 public extension AttributeValueDescription {
@@ -55,7 +57,8 @@ public extension AttributeValueDescription {
             case NSString.className():
                 self = .string(StringValueDescription(attribute: attribute))
 
-           // case MLModel.className():
+            case MLModel.className():
+                self = .mlModel(MLModelValueDescription(attribute: attribute))
 
             default:
                 fatalError("Unsuported type:\(attribute.className)")
@@ -100,6 +103,8 @@ public extension AttributeValueDescription {
         case let .phase(desc):
             return desc.attribute
         case let .string(desc):
+            return desc.attribute
+        case let .mlModel(desc):
             return desc.attribute
         }
     }
