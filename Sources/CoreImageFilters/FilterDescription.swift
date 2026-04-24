@@ -104,3 +104,45 @@ extension FilterDescription: Equatable {
 }
 
 extension FilterDescription: ObservableObject {}
+
+import CoreImage.CIFilterBuiltins
+import Playgrounds
+
+#Playground {
+    let filter = CIFilter.roundedRectangleStrokeGenerator()
+    filter.extent = CGRect(x: 0, y: 0, width: 200, height: 100)
+    filter.color = CIColor.red
+    filter.width = 5
+    filter.radius = 20
+
+    let tr = CGAffineTransform.identity.translatedBy(x: 20, y: 50).rotated(by: 45)
+
+    let image = filter.outputImage!
+
+    image.extent
+
+    CIFilter.documentEnhancer()
+    //   let blur =  CIFilter.gaussianBlur()
+//    blur.isEnabled = false
+//    blur.inputImage = image
+//    blur.radius = 1
+//
+//
+//    let blurImage = blur.outputImage!
+//
+//    blurImage.extent
+
+    // desc.inputAttributes
+
+    // filter.setDefaults()
+
+    // filter.observe(\.attributes) { key, change in
+    //    print(change)
+    // }
+    // filter.outputKeys
+
+    // desc.inputAttributes[1].value = NSNumber(value: 3)
+
+    // desc.inputAttributes[1].value = NSNumber(value: 5)
+    // desc.inputAttributes[1].localizedDescription
+}

@@ -21,7 +21,7 @@ let package = Package(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/vitali-kurlovich/swift-mathkit.git", from: "0.0.2"),
+        .package(url: "https://github.com/vitali-kurlovich/swift-mathkit.git", from: "0.0.3"),
     ],
 
     targets: [
