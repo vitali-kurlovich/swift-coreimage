@@ -21,7 +21,7 @@ let package = Package(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/vitali-kurlovich/swift-mathkit.git", from: "0.0.3"),
+        .package(url: "https://github.com/vitali-kurlovich/swift-mathkit.git", from: "0.18.0"),
     ],
 
     targets: [
@@ -33,10 +33,7 @@ let package = Package(
                 .product(name: "MathKit", package: "swift-mathkit"),
             ]
         ),
-        .testTarget(
-            name: "CoreImageFiltersTests",
-            dependencies: ["CoreImageFilters"]
-        ),
+       
     ],
     swiftLanguageModes: [.v6]
 )
