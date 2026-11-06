@@ -17,8 +17,8 @@ public extension ValueDescription where Value == CIImage {
         }
     }
 
-    var `default`: Value {
-        (attribute[kCIAttributeDefault] as? Value) ?? CIImage.empty()
+    var `default`: Value? {
+        (attribute[kCIAttributeDefault] as? Value)
     }
 
     var identity: Value? {

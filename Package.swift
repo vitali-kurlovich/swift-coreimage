@@ -31,9 +31,10 @@ let package = Package(
             name: "CoreImageFilters",
             dependencies: [
                 .product(name: "MathKit", package: "swift-mathkit"),
+                .product(name: "CGMathKit", package: "swift-mathkit"),
             ]
         ),
-       
+
     ],
     swiftLanguageModes: [.v6]
 )

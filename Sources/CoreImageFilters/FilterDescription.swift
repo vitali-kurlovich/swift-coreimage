@@ -44,7 +44,9 @@ public final class FilterDescription {
 }
 
 public extension FilterDescription {
-    var outputImage: CIImage? { filter.outputImage }
+    var outputImage: CIImage? {
+        filter.outputImage
+    }
 
     var attributes: [String: Any] {
         filter.attributes

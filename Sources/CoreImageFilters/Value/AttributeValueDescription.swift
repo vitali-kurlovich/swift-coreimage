@@ -2,26 +2,56 @@
 //  Created by Vitali Kurlovich on 29.03.2026.
 //
 
+import CoreImage
 import class CoreML.MLModel
 import Foundation
 
-public enum AttributeValueDescription {
-    case angle(AngleValueDescription)
-    case bool(BoolValueDescription)
-    case color(ColorValueDescription)
+enum AttributeValue {
+    case bool(Bool?)
+    case int(Int?)
+    case scalar(Float?)
 
+    case color(CIColor?)
+    case colorSpace(CGColorSpace?)
+
+    case image(CIImage?)
+
+    case count(UInt?)
+
+    case angle(Float?)
+    case distance(Float?)
+    case position(CGPoint?)
+    case offset(CGPoint?)
+    case phase(Float?)
+
+    case rect(CGRect?)
+    case transform(CGAffineTransform?)
+
+    case string(String?)
+    case data(Data?)
+}
+
+public enum AttributeValueDescription {
+    case bool(BoolValueDescription)
+    case int(IntValueDescription)
+    case scalar(ScalarValueDescription)
+
+    case color(ColorValueDescription)
     case colorSpace(ColorSpaceValueDescription)
 
-    case count(CountValueDescription)
-    case distance(DistanceValueDescription)
     case image(ImageValueDescription)
-    case int(IntValueDescription)
+
+    case count(CountValueDescription)
+
+    case angle(AngleValueDescription)
+    case distance(DistanceValueDescription)
     case position(PositionValueDescription)
     case offset(OffsetValueDescription)
     case phase(PhaseValueDescription)
+
     case rect(RectValueDescription)
-    case scalar(ScalarValueDescription)
     case transform(TransformValueDescription)
+
     case string(StringValueDescription)
     case data(DataValueDescription)
     case mlModel(MLModelValueDescription)

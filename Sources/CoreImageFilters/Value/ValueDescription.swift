@@ -26,8 +26,8 @@ public extension ValueDescription {
 
 public extension ValueDescription {
     func setDefault() {
-        attribute.objectWillChange.send()
         attribute.filter.setValue(attribute[kCIAttributeDefault], forKey: key)
+        attribute.objectWillChange.send()
     }
 }
 

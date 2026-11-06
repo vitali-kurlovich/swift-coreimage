@@ -22,7 +22,7 @@ public extension ValueDescription where Value == CGPoint {
             #endif
 
             guard let vector = attribute.value as? CIVector else {
-                return nil
+                return self.default
             }
 
             return vector.cgPointValue
@@ -50,7 +50,7 @@ public extension ValueDescription where Value == CGPoint {
         }
     }
 
-    var `default`: Value {
+    var `default`: Value? {
         guard let value = attribute[kCIAttributeDefault] else { return .zero }
         #if os(macOS)
             if attribute.className == NSValue.className(), let nsValue = (value as? NSValue) {
@@ -62,7 +62,7 @@ public extension ValueDescription where Value == CGPoint {
             return vector.cgPointValue
         }
 
-        return .zero
+        return nil
     }
 
     var identity: Value? {

@@ -17,8 +17,8 @@ public extension ValueDescription where Value == CIColor {
         }
     }
 
-    var `default`: Value {
-        (attribute[kCIAttributeDefault] as? Value) ?? .init()
+    var `default`: Value? {
+        (attribute[kCIAttributeDefault] as? Value)
     }
 
     var identity: Value? {

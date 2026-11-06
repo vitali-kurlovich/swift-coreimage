@@ -64,14 +64,15 @@ extension FilterInputAttribute {
         get {
             filter.value(forKey: key)
         }
-
         set {
-            objectWillChange.send()
             filter.setValue(newValue, forKey: key)
+            objectWillChange.send()
         }
     }
 }
 
 extension FilterInputAttribute {
-    private var attributes: [String: Any] { filter.attributes[key] as? [String: Any] ?? [:] }
+    private var attributes: [String: Any] {
+        filter.attributes[key] as? [String: Any] ?? [:]
+    }
 }

@@ -2,6 +2,7 @@
 //  Created by Vitali Kurlovich on 30.03.2026.
 //
 
+import CGMathKit
 import CoreImage
 import MathKit
 
@@ -73,6 +74,10 @@ public extension CIVector {
     convenience init(_ tr: Transform) {
         self.init(values: [CGFloat(tr.m11), CGFloat(tr.m12), CGFloat(tr.m21), CGFloat(tr.m22), CGFloat(tr.tx), CGFloat(tr.ty)], count: 6)
     }
+
+    convenience init(_ affine: CGAffineTransform) {
+        self.init(Transform(affine))
+    }
 }
 
 public extension Transform {
@@ -84,5 +89,15 @@ public extension Transform {
                   m22: Float(vector.value(at: 3)),
                   tx: Float(vector.value(at: 4)),
                   ty: Float(vector.value(at: 5)))
+    }
+}
+
+import CoreGraphics
+
+public extension CGAffineTransform {
+    init(_ vector: CIVector) {
+        let tr = Transform(vector)
+
+        self.init(tr)
     }
 }
