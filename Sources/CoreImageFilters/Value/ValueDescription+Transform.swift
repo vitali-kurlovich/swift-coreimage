@@ -29,7 +29,7 @@ public extension ValueDescription where Value == Transform {
             return nil
         }
 
-        set {
+        nonmutating set {
             if attribute.className == CIVector.className() {
                 if let value = newValue {
                     attribute.value = CIVector(value)

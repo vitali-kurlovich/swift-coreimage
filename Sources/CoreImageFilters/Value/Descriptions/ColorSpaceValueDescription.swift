@@ -30,7 +30,7 @@ public struct ColorSpaceValueDescription: ValueDescription {
             return (value as! CGColorSpace)
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == NSObject.className())
 
             attribute.value = newValue

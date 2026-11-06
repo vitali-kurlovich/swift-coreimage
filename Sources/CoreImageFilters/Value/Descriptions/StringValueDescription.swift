@@ -28,7 +28,7 @@ public struct StringValueDescription: ValueDescription {
             return (attribute.value as? NSString) as? String
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == NSString.className())
 
             if let value = newValue {

@@ -28,7 +28,7 @@ public struct DataValueDescription: ValueDescription {
             return (attribute.value as? NSData) as? Data
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == NSData.className())
 
             if let value = newValue {

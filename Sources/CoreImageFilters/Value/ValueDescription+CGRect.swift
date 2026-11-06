@@ -16,7 +16,7 @@ public extension ValueDescription where Value == CGRect {
             return vector.cgRectValue
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == CIVector.className())
 
             if let value = newValue {

@@ -21,7 +21,7 @@ public struct MLModelValueDescription: ValueDescription {
             return (attribute.value as? MLModel)
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == MLModel.className())
 
             attribute.value = newValue

@@ -11,7 +11,7 @@ public protocol ValueDescription {
 
     var `default`: Value? { get }
 
-    var value: Value? { get set }
+    var value: Value? { get nonmutating set }
 }
 
 public extension ValueDescription {
@@ -62,7 +62,7 @@ public extension ValueDescription where Value == Float {
             return (attribute.value as? NSNumber)?.floatValue
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == NSNumber.className())
 
             if let value = newValue {
@@ -114,7 +114,7 @@ public extension ValueDescription where Value == Int {
             return (attribute.value as? NSNumber)?.intValue
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == NSNumber.className())
 
             if let value = newValue {
@@ -166,7 +166,7 @@ public extension ValueDescription where Value == UInt {
             return (attribute.value as? NSNumber)?.uintValue
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == NSNumber.className())
 
             if let value = newValue {
@@ -218,7 +218,7 @@ public extension ValueDescription where Value == Bool {
             return (attribute.value as? NSNumber)?.boolValue
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == NSNumber.className())
 
             if let value = newValue {

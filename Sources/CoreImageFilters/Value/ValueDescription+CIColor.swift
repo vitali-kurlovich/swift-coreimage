@@ -11,7 +11,7 @@ public extension ValueDescription where Value == CIColor {
             return attribute.value as? Value
         }
 
-        set {
+        nonmutating set {
             assert(attribute.className == Value.className())
             attribute.value = newValue
         }

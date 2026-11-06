@@ -28,7 +28,7 @@ public extension ValueDescription where Value == CGPoint {
             return vector.cgPointValue
         }
 
-        set {
+        nonmutating set {
             guard let value = newValue else {
                 attribute.value = nil
                 return
